@@ -25,23 +25,24 @@ class Juego {
   }
 
   addFicha(jugador, color) {
-    let min = 0.6;
+    let min = 0.65;
     let max = 0.95;
     let posX = Math.round(
       (Math.random() * (max - min) + min) * this.canvasWidth
     );
-    let posY = Math.round(Math.random() * this.canvasHeight);
-    let ficha = new Ficha(posX, posY, 40, this.ctx, jugador, color);
+    let posY = Math.round(Math.random() * this.canvasHeight - 100);
+    
+    let ficha = new Ficha((posX + 50), (posY + 50), 40, this.ctx, jugador, color);
     this.fichas.push(ficha);
   }
 
   drawFigure() {
     this.clearCanvas();
+    this.tablero.dibujarTablero()
     for (const ficha of this.fichas) {
-      if(ficha !== null){
+      if(ficha){
         ficha.draw();
       }
-      
     }
   }
 
@@ -59,6 +60,10 @@ class Juego {
     }
   }
 
+  crearTablero(){
+    this.tablero.crearArray(this.canvas, this.ctx);
+  }
+
   onMouseUp() {
     
     this.isMouseDown = false;
@@ -68,16 +73,7 @@ class Juego {
 
       console.log('columna: ', posX);
 
-      this.tablero.crearArray();
-
       this.tablero.addFicha(posX, this.lastClicked);
-
-      this.tablero.drawTablero();
-
-     // this.eliminarFicha(this.lastClicked);
-      
-      //this.lastClicked.setPos(posX * 100, this.canvasHeight - 60);
-  
       this.drawFigure();
     }
    
@@ -121,23 +117,3 @@ eliminarFicha(ficha){
 }
 
 }
-
- /*
-      console.log('f.getPosY()')
-      console.log(f.getPosY())
-      console.log('lastClicked.getPosY()')
-      console.log(this.lastClicked.getPosY())
-      console.log('f.getPosx()')
-      console.log(f.getPosX())
-      console.log('lastClicked.getPosY()')
-      console.log(this.lastClicked.getPosX())
-      */
-
-  /*
-          console.log(this.lastClicked.getMov())
-          console.log('misma posicion')
-          console.log('Y')
-          console.log(f.getPosY())
-          console.log('X')
-          console.log(f.getPosX())
-          */

@@ -17,12 +17,15 @@ let juego = new Juego(canvas, ctx, canvasWidth, canvasHeight, x);
 let color1 = 'red';
 
 let color2 = 'blue';    
+juego.crearTablero();
 
 juego.generarFichas(1,color1)
 juego.generarFichas(2,color2)
 
 juego.drawFigure();
 juego.drawFigure();
+
+
 
 function onMouseDown(e){
     let x = e.layerX;
