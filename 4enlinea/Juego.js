@@ -69,16 +69,14 @@ class Juego {
     this.isMouseDown = false;
     if(this.lastClicked != null){
       this.lastClicked.setResaltado(false);
-      let posX = Math.round(this.lastClicked.getPosX() / 100);
+      let posX = Math.round((this.lastClicked.getPosX() - 50) / 100);
 
       console.log('columna: ', posX);
 
       this.tablero.addFicha(posX, this.lastClicked);
       this.drawFigure();
     }
-   
 
-   
   }
 
 
