@@ -75,9 +75,7 @@ class Ficha{
         this.ctx.fillStyle = this.fill;
         this.ctx.beginPath();
         this.ctx.lineWidth = 3;
-
         this.ctx.arc(this.posX, this.posY, this.radius, 0, 2* Math.PI);
-        
         this.ctx.fill();
         if(this.isResaltado === true){
             this.ctx.strokeStyle = this.resaltadoEstilo;

@@ -29,15 +29,19 @@ class Casillero{
 
 
     draw(){
-        this.ctx.fillStyle = 'gray';
+        this.ctx.fillStyle = '#dedede';
         this.ctx.beginPath();
-        this.ctx.lineWidth = 2;
         let width = 90;
         let height = 90;
         let posX = (this.x * 100) - (width / 2);
         let posY = (this.y * 100) - (height / 2);
         this.ctx.fillRect((posX + 50),(posY + 50), width, height);
+        this.ctx.lineWidth = 2;
+        this.ctx.strokeStyle = 'black';
+        this.ctx.strokeRect((posX + 50), (posY + 50), width, height);
         this.ctx.fill();
+
+       
         this.ctx.closePath();
     }
 
