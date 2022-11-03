@@ -70,6 +70,9 @@ class Ficha{
     getMov(){
         return this.isMov;
     }
+    mismoJugador(otroJugador){
+        return this.getJugador() == otroJugador;
+    }
 
     draw(){
         this.ctx.fillStyle = this.fill;

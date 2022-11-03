@@ -4,11 +4,12 @@ class Juego {
     this.ctx = ctx;
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
-    this.tamanioTablero = tamanioTablero;
+    this.tamanioTablero = 8; // revisar
+    this.xEnLinea = 4;
     this.fichas = new Array();
     this.lastClicked = null;
     this.isMouseDown = false;
-    this.tablero = new Tablero();
+    this.tablero = new Tablero(this.tamanioTablero, this.xEnLinea);
   }
 
   getFichasJ1() {
@@ -72,9 +73,15 @@ class Juego {
       let posX = Math.round((this.lastClicked.getPosX() - 50) / 100);
 
       console.log('columna: ', posX);
+      if(posX < this.tamanioTablero){
 
-      this.tablero.addFicha(posX, this.lastClicked);
-      this.drawFigure();
+        this.tablero.addFicha(posX, this.lastClicked);
+        this.drawFigure();
+        
+        if(this.tablero.chequearGanador(this.lastClicked)){
+          alert('gano jugador :' + this.lastClicked.getJugador());
+        }
+      }
     }
 
   }

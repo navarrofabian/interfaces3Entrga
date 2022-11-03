@@ -1,7 +1,7 @@
 class Casillero{
     constructor(x, y, canvas, ctx){
        this.ocupado = false; 
-       this.ficha;
+       this.ficha = null;
        this.x = x;
        this.y = y;
        this.canvas = canvas;
@@ -25,6 +25,13 @@ class Casillero{
     
     setFicha(ficha){
         this.ficha = ficha;
+    }
+    jugadorIgual(otroJugador){
+      return this.getFicha().mismoJugador(otroJugador);
+    }
+
+    noEstaVacio(){
+        return this.ficha != null;
     }
 
 
