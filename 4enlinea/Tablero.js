@@ -108,32 +108,72 @@ class Tablero {
     let fil = parseInt(ficha.getPosY() / 100);
     let jugador = ficha.getJugador();
 
-    for (let i = col - this.xEnLinea; i <= col; i++) {
-      for (let j = fil - this.xEnLinea; j <= fil; j++) {
-        let index = 0;
-        while (
-          i >= 0 &&
-          j >= 0 &&
-          j + index < this.cantFilas -1 &&
-          i + index < this.cantFilas -1 &&
-          this.tablero[j + index][i + index].noEstaVacio()&&
-          this.tablero[i + index][j + index].jugadorIgual(jugador) &&
-          index < this.xEnLinea 
-        ) {
-          index++;
-          console.log('index diagonal: ' + index)
-          if (index == this.xEnLinea) {
-            console.log('true diagonal');
-            return true;
-            
-          }
+
+    let i = col - this.xEnLinea ;
+    let j = fil - this.xEnLinea;
+
+     while (i < col && j < fil) {
+      i++;
+      j++;
+      console.log('fil: '+ j + ' col: '+ i );
+      let index = 0;
+      console.log('index:'+ index);
+      while (
+        i >= 0 &&
+        j >= 0 &&
+        index < this.xEnLinea &&
+        j + index < this.cantFilas -1 &&
+        i + index < this.cantFilas -1 &&
+        this.tablero[j + index][i + index].noEstaVacio()&&
+        this.tablero[j + index][i + index].jugadorIgual(jugador) 
+      ){
+        index++;
+        if (index == this.xEnLinea){
+          console.log('hay 4 en diagonal')
+          return true;
         }
       }
-    }
-    console.log('false diagonal');
-    return false;
-    
+     }
+     console.log('no hay 4 en diagonal')
+
+     i = col + this.xEnLinea;
+     j = fil - this.xEnLinea;
+
+     while (i > col && j < fil) {
+      i--;
+      j++;
+      console.log('fil: '+ j + ' col: '+ i );
+      let index = 0;
+      console.log('index:'+ index);
+      while (
+        i < this.cantFilas &&
+        j >= 0 &&
+        index < this.xEnLinea &&
+        j + index < this.cantFilas -1 &&
+        i - index > 0 &&
+        this.tablero[j + index][i - index].noEstaVacio()&&
+        this.tablero[j + index][i - index].jugadorIgual(jugador) 
+      ){
+        index++;
+        if (index == this.xEnLinea){
+          console.log('hay 4 en anti-diagonal')
+          return true;
+        }
+      }
+     }
+
+
+     console.log('false no hay 4 en anti-diagonal')
+     return false;
+     
+
+
   }
+
+
+  
+
+
 
   drawTablero() {
     //this.clearCanvas();
@@ -172,3 +212,32 @@ class Tablero {
     }
   }
 }
+
+
+/*
+    for (let i = col - this.xEnLinea + 1; i < col; i++) {
+    for (let j = fil - this.xEnLinea + 1; j < fil; j++) {
+    let index = 0;
+        while (
+          i >= 0 &&
+          j >= 0 &&
+          j + index < this.cantFilas -1 &&
+          i + index < this.cantFilas -1 &&
+          this.tablero[j + index][i + index].noEstaVacio()&&
+          this.tablero[i + index][j + index].jugadorIgual(jugador) &&
+          index < this.xEnLinea 
+        ) {
+          index++;
+          console.log('index diagonal: ' + index)
+          if (index == this.xEnLinea) {
+            console.log('true diagonal');
+            return true;
+            
+          }
+        }
+      }
+    }
+    console.log('false diagonal');
+    return false;
+    
+*/
